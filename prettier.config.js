@@ -1,0 +1,21 @@
+module.exports = {
+	importOrder: [
+		"<THIRD_PARTY_MODULES>",
+		"^@mui/(?!icons-material).*$",
+		"^contexts/(.*)$",
+		"^hooks/(.*)$|^queries/(.*)$",
+		"^components/(.*)$",
+		"^@mui/icons-material(.*)$",
+		"^assets/(.*)$",
+		"^[./]",
+		"^pages/(.*)$",
+		"^services/(.*)$",
+		"^constants/(.*)$",
+	],
+	importOrderCaseInsensitive: true,
+	importOrderSeparation: true,
+	importOrderSortSpecifiers: true,
+	plugins: ["@trivago/prettier-plugin-sort-imports"],
+	printWidth: 120,
+	useTabs: true,
+};
