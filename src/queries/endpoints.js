@@ -10,3 +10,7 @@ const apiConfig = {
 export const getOrganizations = (type) => {
 	return api.get(apiConfig, `/organization?companyType=${type}&sortBy=+name&fields=name`);
 };
+
+export const getRecentActivity = () => {
+	return api.get(apiConfig, `/recentActivity?top=true`);
+};

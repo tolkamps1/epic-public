@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 
 import Header from "components/Header";
+import UpdatesFeed from "components/UpdatesFeed";
 
 import Projects from "./Projects";
 
@@ -18,6 +19,10 @@ const useStyles = makeStyles()((theme) => ({
 	},
 	tabs: {
 		paddingLeft: "3rem",
+	},
+	feed: {
+		display: "flex",
+		background: "#F6F9FC",
 	},
 }));
 
@@ -41,7 +46,12 @@ const Home = () => {
 			</Tabs>
 			<div role="tabpanel">
 				{selectedTab === HOME_TAB_KEYS.PROJECTS ? (
-					<Projects />
+					<div>
+						<Projects />
+						<div className={classes.feed}>
+							<UpdatesFeed setSelectedTab={setSelectedTab} />
+						</div>
+					</div>
 				) : selectedTab === HOME_TAB_KEYS.DOCUMENTS ? (
 					<div>search documents</div>
 				) : selectedTab === HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS ? (
