@@ -7,7 +7,6 @@
 		"build": "react-scripts build",
 		"start": "react-scripts start",
 		"test": "react-scripts test",
-		"prepare": "husky",
 		"prettier": "prettier . --write",
 		"update-audit": "npx browserslist@latest && npm update && npm audit fix"
 	},
