@@ -1,0 +1,29 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: epic-public-nginx-runtime
+  namespace: 6cdc9e-tools
+  labels:
+    app: epic-public
+spec:
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/bcgov/epic-public'
+      ref: develop
+    contextDir: openshift/templates/nginx-runtime
+  strategy:
+    type: Docker
+    dockerStrategy:
+      pullSecret:
+        name: artifactory-pull-secret
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'epic-public-nginx-runtime:latest'
+  resources: {}
+  postCommit: {}
+  nodeSelector: null
