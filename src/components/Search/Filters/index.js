@@ -1,15 +1,13 @@
-import { FILTER_KEYS } from "constants";
 import { makeStyles } from "tss-react/mui";
 
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 
-import { useSearch } from "contexts/Search";
-
 import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
 
-import ProjectTypeFilter from "./ProjectTypeFilter";
-import ProponentsFilter from "./ProponentsFilter";
+import { useSearch } from "contexts/Search";
+
+import { getFilterComponent } from "./services";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
@@ -18,7 +16,7 @@ const useStyles = makeStyles()((theme) => ({
 	chips: {
 		alignItems: "center",
 		display: "flex",
-		minHeight: "3rem",
+		minHeight: "4rem",
 	},
 	clear: {
 		marginLeft: "2rem",
@@ -42,7 +40,7 @@ const useStyles = makeStyles()((theme) => ({
 const Filters = () => {
 	const { classes } = useStyles();
 
-	const { onClearFilters, onRemoveFilter, selectedFilters } = useSearch();
+	const { filters = [], onClearFilters, onRemoveFilter, selectedFilters } = useSearch();
 
 	return (
 		<section aria-labelledby="filters_label" className={classes.container}>
@@ -53,13 +51,9 @@ const Filters = () => {
 				{!!selectedFilters.length && (
 					<>
 						<ul className={classes.list}>
-							{selectedFilters.map(({ description, filterKey, key }, i) => (
+							{selectedFilters.map(({ color = "success", description, filterKey, key }, i) => (
 								<li key={i}>
-									<Chip
-										color={filterKey === FILTER_KEYS.PROJECT_TYPES ? "warning" : "success"}
-										label={description}
-										onDelete={() => onRemoveFilter(filterKey, key)}
-									/>
+									<Chip color={color} label={description} onDelete={() => onRemoveFilter(filterKey, key)} />
 								</li>
 							))}
 						</ul>
@@ -69,10 +63,7 @@ const Filters = () => {
 					</>
 				)}
 			</div>
-			<div className={classes.filters}>
-				<ProjectTypeFilter />
-				<ProponentsFilter />
-			</div>
+			<div className={classes.filters}>{filters.map((filterKey) => getFilterComponent(filterKey))}</div>
 		</section>
 	);
 };

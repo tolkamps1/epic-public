@@ -1,10 +1,10 @@
-import { HOME_TAB_KEYS } from "constants";
-
 import { SearchProvider } from "contexts/Search";
 
 import Search from "components/Search";
 
 import ProjectResults from "./Results";
+
+import { HOME_TAB_KEYS } from "constants";
 
 const Projects = () => {
 	return (

@@ -23,7 +23,7 @@ root.render(
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<App />
-				<ReactQueryDevtools initialIsClosed />
+				<ReactQueryDevtools />
 			</ThemeProvider>
 		</QueryClientProvider>
 	</React.StrictMode>,

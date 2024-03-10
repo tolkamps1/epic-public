@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 
-import { useSearch } from "contexts/Search";
-
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+
+import { useSearch } from "contexts/Search";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {

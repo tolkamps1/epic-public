@@ -4,20 +4,16 @@ import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlin
 
 import { useSearch } from "contexts/Search";
 
-import useOrganizations from "queries/useOrganizations";
-
 import Filter from "components/Filter";
 
-import { FILTER_KEYS } from "constants";
+import { FILTER_KEYS, PROJECT_TYPES } from "constants";
 
-const filterKey = FILTER_KEYS.PROPONENTS;
+const filterKey = FILTER_KEYS.PROJECT_TYPES;
 
-const ProponentsFilter = () => {
+const ProjectTypesFilter = () => {
 	const { onFilterChange, selectedFilters } = useSearch();
 
-	const { data = [] } = useOrganizations("Proponent/Certificate Holder");
-
-	const items = useMemo(() => data.map(({ _id, name }) => ({ description: name, filterKey, key: _id })), [data]);
+	const items = useMemo(() => PROJECT_TYPES.map((item) => ({ ...item, filterKey })), []);
 
 	const selected = useMemo(() => selectedFilters.filter(({ filterKey: fk }) => fk === filterKey), [selectedFilters]);
 
@@ -27,9 +23,9 @@ const ProponentsFilter = () => {
 			items={items}
 			onChange={(filters) => onFilterChange(filterKey, filters)}
 			selected={selected}
-			title="Proponents"
+			title="Project Type"
 		/>
 	);
 };
 
-export default ProponentsFilter;
+export default ProjectTypesFilter;

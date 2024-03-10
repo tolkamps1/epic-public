@@ -1,30 +1,31 @@
-import { FILTER_KEYS, PROJECT_TYPES } from "constants";
 import { useMemo } from "react";
+
+import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 
 import { useSearch } from "contexts/Search";
 
 import Filter from "components/Filter";
 
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import { FILTER_KEYS, STATUSES } from "constants";
 
-const filterKey = FILTER_KEYS.PROJECT_TYPES;
+const filterKey = FILTER_KEYS.STATUS;
 
-const ProjectTypeFilter = ({ onChange, value }) => {
+const StatusFilter = () => {
 	const { onFilterChange, selectedFilters } = useSearch();
 
-	const items = useMemo(() => PROJECT_TYPES.map((item) => ({ ...item, filterKey })), []);
+	const items = useMemo(() => STATUSES.map((item) => ({ ...item, filterKey })), []);
 
 	const selected = useMemo(() => selectedFilters.filter(({ filterKey: fk }) => fk === filterKey), [selectedFilters]);
 
 	return (
 		<Filter
-			icon={<BusinessCenterOutlinedIcon />}
+			icon={<ForumOutlinedIcon />}
 			items={items}
 			onChange={(filters) => onFilterChange(filterKey, filters)}
 			selected={selected}
-			title="Project Type"
+			title="Status"
 		/>
 	);
 };
 
-export default ProjectTypeFilter;
+export default StatusFilter;

@@ -1,5 +1,6 @@
-import { FILTERS } from "constants";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+
+import { getTabFilters } from "services/filters";
 
 const SearchContext = createContext();
 
@@ -16,7 +17,7 @@ const Search = ({ children: childNodes, tabKey }) => {
 		if (filtersRef.current) return;
 		filtersRef.current = true;
 
-		setFilters(FILTERS[tabKey]);
+		setFilters(getTabFilters(tabKey));
 	}, [tabKey]);
 
 	const onClearFilters = () => {
