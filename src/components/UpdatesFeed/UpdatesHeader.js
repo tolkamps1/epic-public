@@ -1,29 +1,31 @@
-import { HOME_TAB_KEYS } from "constants";
+import PropTypes from "prop-types";
 import { makeStyles } from "tss-react/mui";
 
 import Button from "@mui/material/Button";
+
+import { HOME_TAB_KEYS } from "constants";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
 		color: "white",
 		display: "flex",
-		padding: "48px, 10px, 10px, 0px",
+		padding: "3rem, 0.625rem, 0.625rem, 0",
 		justifyContent: "space-between",
 	},
 	headerTitle: {
-		fontWeight: "700",
-		fontSize: "32px",
+		fontWeight: 700,
+		fontSize: "2rem",
 		color: "black",
-		margin: ".6rem 0 0 0",
+		margin: ".625rem 0 0 0",
 	},
 	line: {
-		width: "86px",
+		width: "5.375rem",
 		height: "2rem",
 		borderBottom: "5px solid #FCBA19",
 	},
 	updatesButton: {
 		alignSelf: "end",
-		fontSize: 20,
+		fontSize: "1.25rem",
 	},
 }));
 
@@ -46,6 +48,10 @@ const UpdatesHeader = ({ onButtonNavClick }) => {
 			</Button>
 		</div>
 	);
+};
+
+UpdatesHeader.propTypes = {
+	onButtonNavClick: PropTypes.func.isRequired,
 };
 
 export default UpdatesHeader;

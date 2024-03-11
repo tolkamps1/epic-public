@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useMemo } from "react";
 import { makeStyles } from "tss-react/mui";
 
@@ -10,20 +11,17 @@ const useStyles = makeStyles()((theme) => ({
 	container: {
 		display: "flex",
 		flexDirection: "column",
-		gap: "10px",
+		gap: "0.625rem",
 		padding: "1rem 1rem 1rem 3rem",
 		flex: "0 0 66%",
 	},
 }));
 
 const UpdatesFeed = ({ setSelectedTab }) => {
-	const handleTabButtonClick = (index) => {
-		setSelectedTab(index);
-	};
-
 	const { classes } = useStyles();
 
 	const { data = [] } = useRecentActivity();
+
 	const updates = useMemo(
 		() =>
 			data.map(({ _id, content, dateUpdated, headline, documentUrl, project, pcp }) => ({
@@ -38,6 +36,10 @@ const UpdatesFeed = ({ setSelectedTab }) => {
 		[data],
 	);
 
+	const handleTabButtonClick = (index) => {
+		setSelectedTab(index);
+	};
+
 	return (
 		<div className={classes.container}>
 			<UpdatesHeader onButtonNavClick={handleTabButtonClick} />
@@ -46,6 +48,10 @@ const UpdatesFeed = ({ setSelectedTab }) => {
 			))}
 		</div>
 	);
+};
+
+UpdatesFeed.propTypes = {
+	setSelectedTab: PropTypes.func.isRequired,
 };
 
 export default UpdatesFeed;

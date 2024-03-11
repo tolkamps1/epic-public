@@ -1,13 +1,3 @@
-import BusinessIcon from "@mui/icons-material/Business";
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
-import ElectricalServicesIcon from "@mui/icons-material/ElectricalServices";
-import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
-import FactoryIcon from "@mui/icons-material/Factory";
-import FoodBankIcon from "@mui/icons-material/FoodBank";
-import PropaneIcon from "@mui/icons-material/Propane";
-import TourIcon from "@mui/icons-material/Tour";
-import WaterDamageIcon from "@mui/icons-material/WaterDamage";
-
 export const FILTER_KEYS = {
 	DATE_RANGE: "dateRange",
 	DOCUMENT_AUTHORS: "documentAuthors",
@@ -25,6 +15,18 @@ export const HOME_TAB_KEYS = {
 	PUBLIC_COMMENT_PERIODS: 2,
 	UPDATES: 3,
 	MAP: 4,
+};
+export const PROJECT_TYPE_KEYS = {
+	ENERGY_ELECTRICITY: "Energy-Electricity",
+	ENERGY_PATROLIUM: "Energy-Petroleum & Natural Gas",
+	FOOD_PROCESSING: "Food Processing",
+	INDUSTRIAL: "Industrial",
+	MINES: "Mines",
+	OTHER: "Other",
+	TOURIST_DESTINATION: "Tourist Destination Resorts",
+	TRANSPORTATION: "Transportation",
+	WASTE_DISPOSAL: "Waste Disposal",
+	WATER_MANAGEMENT: "Water Management",
 };
 
 export const HOME_TABS = [
@@ -102,16 +104,16 @@ export const PROJECT_REGIONS = [
 	{ description: "Vancouver Island", key: "Vancouver Island" },
 ];
 export const PROJECT_TYPES = [
-	{ description: "Energy-Electricity", key: "Energy-Electricity", icon: <ElectricalServicesIcon /> },
-	{ description: "Energy-Petroleum & Natural Gas", key: "Energy-Petroleum & Natural Gas", icon: <PropaneIcon /> },
-	{ description: "Food Processing", key: "Food Processing", icon: <FoodBankIcon /> },
-	{ description: "Industrial", key: "Industrial", icon: <FactoryIcon /> },
-	{ description: "Mines", key: "Mines", icon: <BusinessCenterOutlinedIcon /> },
-	{ description: "Other", key: "Other", icon: <BusinessIcon /> },
-	{ description: "Tourist Destination Resorts", key: "Tourist Destination Resorts", icon: <TourIcon /> },
-	{ description: "Transportation", key: "Transportation", icon: <EmojiTransportationIcon /> },
-	{ description: "Waste Disposal", key: "Waste Disposal", icon: <BusinessCenterOutlinedIcon /> },
-	{ description: "Water Management", key: "Water Management", icon: <WaterDamageIcon /> },
+	{ description: "Energy-Electricity", key: PROJECT_TYPE_KEYS.ENERGY_ELECTRICITY },
+	{ description: "Energy-Petroleum & Natural Gas", key: PROJECT_TYPE_KEYS.ENERGY_PATROLIUM },
+	{ description: "Food Processing", key: PROJECT_TYPE_KEYS.FOOD_PROCESSING },
+	{ description: "Industrial", key: PROJECT_TYPE_KEYS.INDUSTRIAL },
+	{ description: "Mines", key: PROJECT_TYPE_KEYS.MINES },
+	{ description: "Other", key: PROJECT_TYPE_KEYS.OTHER },
+	{ description: "Tourist Destination Resorts", key: PROJECT_TYPE_KEYS.TOURIST_DESTINATION },
+	{ description: "Transportation", key: PROJECT_TYPE_KEYS.TRANSPORTATION },
+	{ description: "Waste Disposal", key: PROJECT_TYPE_KEYS.WASTE_DISPOSAL },
+	{ description: "Water Management", key: PROJECT_TYPE_KEYS.WATER_MANAGEMENT },
 ];
 export const STATUSES = [
 	{ description: "Option 1", key: "1" },

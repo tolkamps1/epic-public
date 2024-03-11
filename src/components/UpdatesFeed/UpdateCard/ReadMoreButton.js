@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "tss-react/mui";
 
 import Button from "@mui/material/Button";
@@ -10,21 +10,29 @@ const useStyles = makeStyles()((theme) => ({
 	readMore: {
 		display: "flex",
 		alignItems: "center",
-		fontSize: 16,
+		"& svg": {
+			color: "#234075",
+			fontSize: "2rem",
+		},
 	},
 }));
 
-const ReadMoreButton = ({ onClick, expanded }) => {
+const ReadMoreButton = ({ expanded, onClick }) => {
 	const { classes } = useStyles();
 
 	return (
-		<Button className={classes.container} onClick={onClick} variant="text">
+		<Button onClick={onClick} variant="text">
 			<span className={classes.readMore}>
 				{expanded ? "Read Less" : "Read More"}
 				{expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
 			</span>
 		</Button>
 	);
+};
+
+ReadMoreButton.propTypes = {
+	expanded: PropTypes.bool.isRequired,
+	onClick: PropTypes.func.isRequired,
 };
 
 export default ReadMoreButton;

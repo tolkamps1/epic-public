@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { MILLISECONDS_IN_HOUR } from "./constants";
+import { MILLISECONDS_IN_MINUTE } from "./constants";
 import { getRecentActivity } from "./endpoints";
 
 const cacheKey = "recentActivity";
@@ -15,7 +15,7 @@ const useRecentActivity = ({ enabled = true } = {}) => {
 		enabled: !!enabled,
 		queryFn: queryRecentActivity,
 		queryKey: [cacheKey],
-		staleTime: MILLISECONDS_IN_HOUR,
+		staleTime: 5 * MILLISECONDS_IN_MINUTE,
 	});
 
 	return recentActivityQuery;
