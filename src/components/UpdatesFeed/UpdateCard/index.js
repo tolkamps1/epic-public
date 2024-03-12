@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import { getProjectIcon } from "../services";
 import ReadMoreButton from "./ReadMoreButton";
 
+import { getFormatDateLongMonth } from "services/date";
+
 const useStyles = makeStyles()((theme) => ({
 	container: {
 		color: "black",
@@ -87,11 +89,7 @@ const UpdateCard = ({ documentUrl, pcp, project, updateContent, updateDate, upda
 
 	const updateContentRef = useRef(null);
 
-	const formattedDate = new Intl.DateTimeFormat("en-US", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	}).format(new Date(updateDate));
+	const formattedDate = getFormatDateLongMonth(new Date(updateDate));
 
 	const isSingleDoc = documentUrl && !documentUrl.includes("docs?folder");
 	const pcpUrl = pcp ? (pcp.isMet && pcp.metURL ? pcp.metURL : `/p/${project._id}/cp/${pcp._id}`) : "";
