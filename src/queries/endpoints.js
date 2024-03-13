@@ -17,3 +17,7 @@ export const getPcps = (thirtyDaysAgo) => {
 		`/search?dataset=CommentPeriod&pageNum=0&pageSize=1000&sortBy=-dateStarted&populate=true&and[dateCompletedStart]=${thirtyDaysAgo}`,
 	);
 };
+
+export const getRecentActivity = () => {
+	return api.get(apiConfig, `/recentActivity?top=true`);
+};

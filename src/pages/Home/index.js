@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 
 import Header from "components/Header";
 import PcpFeed from "components/PcpFeed";
+import UpdatesFeed from "components/UpdatesFeed";
 
 import Projects from "./Projects";
 
@@ -22,6 +23,7 @@ const useStyles = makeStyles()((theme) => ({
 	},
 	feed: {
 		display: "flex",
+		background: "#F6F9FC",
 	},
 }));
 
@@ -49,6 +51,7 @@ const Home = () => {
 						<Projects />
 						<div className={classes.feed}>
 							<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
+							<UpdatesFeed setSelectedTab={setSelectedTab} />
 						</div>
 					</div>
 				) : selectedTab === HOME_TAB_KEYS.DOCUMENTS ? (
