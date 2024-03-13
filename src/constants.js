@@ -16,6 +16,18 @@ export const HOME_TAB_KEYS = {
 	UPDATES: 3,
 	MAP: 4,
 };
+export const PROJECT_TYPE_KEYS = {
+	ENERGY_ELECTRICITY: "Energy-Electricity",
+	ENERGY_PATROLIUM: "Energy-Petroleum & Natural Gas",
+	FOOD_PROCESSING: "Food Processing",
+	INDUSTRIAL: "Industrial",
+	MINES: "Mines",
+	OTHER: "Other",
+	TOURIST_DESTINATION: "Tourist Destination Resorts",
+	TRANSPORTATION: "Transportation",
+	WASTE_DISPOSAL: "Waste Disposal",
+	WATER_MANAGEMENT: "Water Management",
+};
 
 export const HOME_TABS = [
 	{
@@ -92,16 +104,16 @@ export const PROJECT_REGIONS = [
 	{ description: "Vancouver Island", key: "Vancouver Island" },
 ];
 export const PROJECT_TYPES = [
-	{ description: "Energy-Electricity", key: "Energy-Electricity" },
-	{ description: "Energy-Petroleum & Natural Gas", key: "Energy-Petroleum & Natural Gas" },
-	{ description: "Food Processing", key: "Food Processing" },
-	{ description: "Industrial", key: "Industrial" },
-	{ description: "Mines", key: "Mines" },
-	{ description: "Other", key: "Other" },
-	{ description: "Tourist Destination Resorts", key: "Tourist Destination Resorts" },
-	{ description: "Transportation", key: "Transportation" },
-	{ description: "Waste Disposal", key: "Waste Disposal" },
-	{ description: "Water Management", key: "Water Management" },
+	{ description: "Energy-Electricity", key: PROJECT_TYPE_KEYS.ENERGY_ELECTRICITY },
+	{ description: "Energy-Petroleum & Natural Gas", key: PROJECT_TYPE_KEYS.ENERGY_PATROLIUM },
+	{ description: "Food Processing", key: PROJECT_TYPE_KEYS.FOOD_PROCESSING },
+	{ description: "Industrial", key: PROJECT_TYPE_KEYS.INDUSTRIAL },
+	{ description: "Mines", key: PROJECT_TYPE_KEYS.MINES },
+	{ description: "Other", key: PROJECT_TYPE_KEYS.OTHER },
+	{ description: "Tourist Destination Resorts", key: PROJECT_TYPE_KEYS.TOURIST_DESTINATION },
+	{ description: "Transportation", key: PROJECT_TYPE_KEYS.TRANSPORTATION },
+	{ description: "Waste Disposal", key: PROJECT_TYPE_KEYS.WASTE_DISPOSAL },
+	{ description: "Water Management", key: PROJECT_TYPE_KEYS.WATER_MANAGEMENT },
 ];
 export const STATUSES = [
 	{ description: "Option 1", key: "1" },
