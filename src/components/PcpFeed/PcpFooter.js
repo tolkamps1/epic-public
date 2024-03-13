@@ -13,7 +13,7 @@ const useStyles = makeStyles()((theme) => ({
 		width: "100%",
 	},
 	pcpButton: {
-		fontSize: 20,
+		fontSize: "1.25rem",
 		paddingLeft: "0",
 	},
 }));

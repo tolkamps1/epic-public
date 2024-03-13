@@ -1,6 +1,7 @@
-import * as moment from "moment-timezone";
 import PropTypes from "prop-types";
 import { makeStyles } from "tss-react/mui";
+
+import { getFormatDateLongMonth, isAfterDate, isBetweenDates } from "services/date";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
@@ -54,26 +55,20 @@ const useStyles = makeStyles()((theme) => ({
 const PcpCard = ({ dateCompleted, dateStarted, phaseName, projectName }) => {
 	const { classes } = useStyles();
 
-	const formattedDate = (date) => {
-		return new Intl.DateTimeFormat("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		}).format(new Date(date));
-	};
+	const formattedStartDate = getFormatDateLongMonth(new Date(dateStarted));
+	const formattedCompletedDate = getFormatDateLongMonth(new Date(dateCompleted));
 
 	const status = (startDate, endDate) => {
 		if (startDate && endDate) {
-			const now = new Date();
-			const dateStarted = moment(startDate);
-			const dateCompleted = moment(endDate);
-			if (moment(now).isBetween(dateStarted, dateCompleted)) {
+			const dateStarted = new Date(startDate);
+			const dateCompleted = new Date(endDate);
+			if (isBetweenDates(dateStarted, dateCompleted)) {
 				return "Open";
-			} else if (moment(now).isAfter(dateCompleted)) {
-				return "Closed";
-			} else {
-				return "Upcoming";
 			}
+			if (isAfterDate(dateCompleted)) {
+				return "Closed";
+			}
+			return "Upcoming";
 		}
 	};
 
@@ -87,7 +82,7 @@ const PcpCard = ({ dateCompleted, dateStarted, phaseName, projectName }) => {
 				</div>
 				<div className={classes.content}>
 					<div>
-						{formattedDate(dateStarted)} - {formattedDate(dateCompleted)}
+						{formattedStartDate} - {formattedCompletedDate}
 					</div>
 					<div className={classes.status}>
 						<div

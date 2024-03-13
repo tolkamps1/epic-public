@@ -1,4 +1,3 @@
-import * as moment from "moment-timezone";
 import { PropTypes } from "prop-types";
 import { useMemo } from "react";
 import { makeStyles } from "tss-react/mui";
@@ -10,12 +9,14 @@ import PcpFooter from "./PcpFooter";
 import PcpHeader from "./PcpHeader";
 import pcpImage from "./pcpImage.jpeg";
 
+import { getFormatDateAsISOString, subtractDays } from "services/date";
+
 const useStyles = makeStyles()((theme) => ({
 	container: {
 		display: "flex",
 		flexDirection: "column",
 		gap: "0.625rem",
-		padding: "1rem 3rem 1rem 0",
+		padding: "1rem 3rem 1rem 1rem",
 		flex: "0 0 33%",
 		color: theme.palette.text.primary,
 		"@media (max-width: 44rem)": {
@@ -53,7 +54,8 @@ const PcpFeed = ({ setSelectedTab }) => {
 	const { classes } = useStyles();
 
 	const now = new Date();
-	const thirtyDaysAgo = moment(now).subtract(30, "days").format("YYYY-MM-DD");
+	const thirtyDaysAgo = getFormatDateAsISOString(subtractDays(now, 30));
+	console.log(thirtyDaysAgo);
 
 	const { data = [{ searchResults: [] }] } = usePcps(thirtyDaysAgo);
 	const pcps = useMemo(

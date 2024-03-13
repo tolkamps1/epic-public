@@ -22,8 +22,9 @@ const useStyles = makeStyles()((theme) => ({
 		paddingLeft: "3rem",
 	},
 	feed: {
-		display: "flex",
 		background: "#F6F9FC",
+		display: "flex",
+		flexWrap: "wrap",
 	},
 }));
 
@@ -50,8 +51,8 @@ const Home = () => {
 					<div>
 						<Projects />
 						<div className={classes.feed}>
-							<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
 							<UpdatesFeed setSelectedTab={setSelectedTab} />
+							<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
 						</div>
 					</div>
 				) : selectedTab === HOME_TAB_KEYS.DOCUMENTS ? (

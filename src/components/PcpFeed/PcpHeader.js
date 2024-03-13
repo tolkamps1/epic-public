@@ -13,7 +13,7 @@ const useStyles = makeStyles()((theme) => ({
 		fontWeight: "700",
 		fontSize: "1.5rem",
 		color: "black",
-		margin: ".625rem 0 0 0",
+		margin: "0.625rem 0 0 0",
 	},
 	line: {
 		width: "5.375rem",
