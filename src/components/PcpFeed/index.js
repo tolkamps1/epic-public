@@ -55,7 +55,6 @@ const PcpFeed = ({ setSelectedTab }) => {
 
 	const now = new Date();
 	const thirtyDaysAgo = getFormatDateAsISOString(subtractDays(now, 30));
-	console.log(thirtyDaysAgo);
 
 	const { data = [{ searchResults: [] }] } = usePcps(thirtyDaysAgo);
 	const pcps = useMemo(

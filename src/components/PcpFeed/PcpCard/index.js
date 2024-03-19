@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 import { makeStyles } from "tss-react/mui";
 
 import { getFormatDateLongMonth, isAfterDate, isBetweenDates } from "services/date";
@@ -7,7 +8,7 @@ const useStyles = makeStyles()((theme) => ({
 	container: {
 		color: theme.palette.text.primary,
 		background: "white",
-		padding: "0.6rem 0 0.6rem 0",
+		padding: "0.625rem 0 0.625rem 0",
 		display: "flex",
 		gap: "0.625rem",
 		flexDirection: "row",
@@ -31,14 +32,14 @@ const useStyles = makeStyles()((theme) => ({
 		marginLeft: "auto",
 		"& div": {
 			fontWeight: 700,
-			padding: "0.4rem 0.875rem 0.4rem 0.875rem",
+			padding: "0.375rem 0.875rem 0.375rem 0.875rem",
 			borderRadius: "1rem",
 			fontSize: "0.875rem",
 			lineHeight: "1rem",
 			color: "white",
 			display: "flex",
 			justifyContent: "center",
-			width: "5.624rem",
+			width: "5.25rem",
 		},
 	},
 	closed: {
@@ -58,21 +59,19 @@ const PcpCard = ({ dateCompleted, dateStarted, phaseName, projectName }) => {
 	const formattedStartDate = getFormatDateLongMonth(new Date(dateStarted));
 	const formattedCompletedDate = getFormatDateLongMonth(new Date(dateCompleted));
 
-	const status = (startDate, endDate) => {
-		if (startDate && endDate) {
-			const dateStarted = new Date(startDate);
-			const dateCompleted = new Date(endDate);
-			if (isBetweenDates(dateStarted, dateCompleted)) {
+	const pcpStatus = useMemo(() => {
+		if (dateStarted && dateCompleted) {
+			const started = new Date(dateStarted);
+			const completed = new Date(dateCompleted);
+			if (isBetweenDates(started, completed)) {
 				return "Open";
 			}
-			if (isAfterDate(dateCompleted)) {
+			if (isAfterDate(completed)) {
 				return "Closed";
 			}
 			return "Upcoming";
 		}
-	};
-
-	const pcpStatus = status(dateStarted, dateCompleted);
+	}, [dateStarted, dateCompleted]);
 
 	return (
 		<div className={classes.container}>

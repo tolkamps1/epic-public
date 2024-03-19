@@ -16,7 +16,7 @@ const useStyles = makeStyles()((theme) => ({
 		margin: "0.625rem 0 0 0",
 	},
 	line: {
-		width: "5.375rem",
+		width: "2.25rem",
 		height: "2rem",
 		borderBottom: "5px solid #FCBA19",
 	},
