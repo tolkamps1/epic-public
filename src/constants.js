@@ -4,7 +4,7 @@ export const FILTER_KEYS = {
 	DOCUMENT_TYPES: "documentTypes",
 	PROJECT_PHASES: "projectPhases",
 	PROJECT_REGIONS: "projectRegions",
-	PROJECT_TYPES: "projectTypes",
+	PROJECT_TYPES: "type",
 	PROPONENTS: "proponents",
 	STATUS: "status",
 	UPDATE_TYPES: "updateTypes",
@@ -87,11 +87,7 @@ export const DOCUMENT_TYPES = [
 	{ description: "Option 2", key: "2" },
 	{ description: "Option 3", key: "3" },
 ];
-export const PROJECT_PHASES = [
-	{ description: "Option 1", key: "1" },
-	{ description: "Option 2", key: "2" },
-	{ description: "Option 3", key: "3" },
-];
+
 export const PROJECT_REGIONS = [
 	{ description: "Cariboo", key: "Cariboo" },
 	{ description: "Kootenay", key: "Kootenay" },
@@ -125,4 +121,19 @@ export const UPDATE_TYPES = [
 	{ description: "Option 1", key: "1" },
 	{ description: "Option 2", key: "2" },
 	{ description: "Option 3", key: "3" },
+];
+
+export const TABLE_DEFAULTS = {
+	DEFAULT_PAGE_SIZE: 10,
+	DEFAULT_CURRENT_PAGE: 0,
+	DEFAULT_ROWS_PER_PAGE: [10, 25, 50, 100, { value: -1, label: "All" }],
+	DEFAULT_SORT: {
+		DEFAULT_ORDER: "desc",
+		DEFAULT_ORDER_BY: "score",
+	},
+};
+
+export const PROJECT_LEGISLATION_YEARS = [
+	{ description: 2002, key: "legislation_2002" },
+	{ description: 2018, key: "legislation_2018" },
 ];
