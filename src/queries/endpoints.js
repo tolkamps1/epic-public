@@ -1,6 +1,6 @@
 import api from "services/api";
 
-import { TABLE_DEFAULTS } from "constants";
+import { API_FILTER_KEYS } from "constants";
 
 const apiConfig = {
 	url:
@@ -9,10 +9,11 @@ const apiConfig = {
 		"http://localhost:3000/api/public",
 };
 
-const parseFilters = (filter) => {
+const parseFilters = (filters) => {
 	let filterAsString = ``;
-	filter.forEach((filter) => {
-		filterAsString += `&and[${filter.filterKey}]=${filter.key}`;
+	filters.forEach((filter) => {
+		const apiFilterKey = API_FILTER_KEYS[filter.filterKey];
+		filter.key.split(",").forEach((value) => (filterAsString += `&and[${apiFilterKey}]=${value}`));
 	});
 	return filterAsString;
 };

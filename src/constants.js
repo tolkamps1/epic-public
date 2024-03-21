@@ -1,13 +1,26 @@
 export const FILTER_KEYS = {
 	DATE_RANGE: "dateRange",
 	DOCUMENT_AUTHORS: "documentAuthors",
+	DOCUMENT_PROJECT_PHASES: "documentProjectPhases",
 	DOCUMENT_TYPES: "documentTypes",
 	PROJECT_PHASES: "projectPhases",
 	PROJECT_REGIONS: "projectRegions",
-	PROJECT_TYPES: "type",
+	PROJECT_TYPES: "projectTypes",
 	PROPONENTS: "proponents",
 	STATUS: "status",
 	UPDATE_TYPES: "updateTypes",
+};
+export const API_FILTER_KEYS = {
+	[FILTER_KEYS.DATE_RANGE]: "dateRange",
+	[FILTER_KEYS.DOCUMENT_AUTHORS]: "documentAuthorType",
+	[FILTER_KEYS.DOCUMENT_PROJECT_PHASES]: "projectPhase",
+	[FILTER_KEYS.DOCUMENT_TYPES]: "type",
+	[FILTER_KEYS.PROJECT_PHASES]: "currentPhaseName",
+	[FILTER_KEYS.PROJECT_REGIONS]: "projectRegions",
+	[FILTER_KEYS.PROJECT_TYPES]: "type",
+	[FILTER_KEYS.PROPONENTS]: "proponents",
+	[FILTER_KEYS.STATUS]: "status",
+	[FILTER_KEYS.UPDATE_TYPES]: "updateTypes",
 };
 export const HOME_TAB_KEYS = {
 	PROJECTS: 0,

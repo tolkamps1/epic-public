@@ -38,29 +38,29 @@ const useStyles = makeStyles()((theme) => ({
 			borderRadius: "0.25rem",
 		},
 		"& .projectPhases": {
-			color: "#022170",
-			backgroundColor: "#E3EBFF",
+			color: "#323130",
+			backgroundColor: "#F1F8FF",
 			"& svg": {
-				color: "#022170",
+				color: "#323130",
 			},
 		},
 		"& .projectRegions": {
-			color: "#d32f2f",
-			backgroundColor: "#EF9A9A",
+			color: "#053662",
+			backgroundColor: "#E3EBFF",
 			"& svg": {
-				color: "#d32f2f",
+				color: "#053662",
 			},
 		},
 		"& .proponents": {
-			color: "#196F3D",
-			backgroundColor: "#DAF7A6",
+			color: "#593F00",
+			backgroundColor: "#FFF8E8",
 			"& svg": {
-				color: "#196F3D",
+				color: "#593F00",
 			},
 		},
-		"& .type": {
+		"& .projectTypes": {
 			color: "#553402",
-			backgroundColor: "#FEEBAB",
+			backgroundColor: "#ffe095",
 			"& svg": {
 				color: "#553402",
 			},

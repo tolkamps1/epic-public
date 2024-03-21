@@ -12,6 +12,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { PROJECT_LEGISLATION_YEARS } from "constants";
+import { FILTER_KEYS } from "constants";
 
 const useStyles = makeStyles()((theme, { width }) => ({
 	filter: {
@@ -124,7 +125,7 @@ const Filter = ({ filterKey, icon, items = [], onChange, selected, title }) => {
 					</div>
 					{open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
 				</MenuButton>
-				{items.length > 0 && filterKey === "projectPhases" && (
+				{items.length > 0 && filterKey === FILTER_KEYS.PROJECT_PHASES && (
 					<Menu className={classes.menu}>
 						{PROJECT_LEGISLATION_YEARS.map((legislation) => (
 							<div key={`subheader-${legislation.key}`}>
@@ -148,7 +149,7 @@ const Filter = ({ filterKey, icon, items = [], onChange, selected, title }) => {
 						))}
 					</Menu>
 				)}
-				{filterKey !== "projectPhases" && (
+				{filterKey !== FILTER_KEYS.PROJECT_PHASES && (
 					<Menu className={classes.menu}>
 						{items.map(({ description, key }) => (
 							<MenuItem
