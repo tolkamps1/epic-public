@@ -125,45 +125,19 @@ const Filter = ({ filterKey, icon, items = [], onChange, selected, title }) => {
 					</div>
 					{open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
 				</MenuButton>
-				{items.length > 0 && filterKey === FILTER_KEYS.PROJECT_PHASES && (
-					<Menu className={classes.menu}>
-						{PROJECT_LEGISLATION_YEARS.map((legislation) => (
-							<div key={`subheader-${legislation.key}`}>
-								<MenuItem className={classes.menuItem} key={legislation.key}>
-									{legislation.description}
-								</MenuItem>
-								{items
-									.filter((item) => item.legislation === legislation.description)
-									.map((item) => (
-										<MenuItem
-											className={classes.menuItem}
-											key={item.key}
-											onClick={() => onSelect(item.key)}
-											onKeyDown={({ code }) => code === "Escape" && onToggle()}
-										>
-											<Checkbox checked={keys.includes(item.key)} />
-											{item.description}
-										</MenuItem>
-									))}
-							</div>
-						))}
-					</Menu>
-				)}
-				{filterKey !== FILTER_KEYS.PROJECT_PHASES && (
-					<Menu className={classes.menu}>
-						{items.map(({ description, key }) => (
-							<MenuItem
-								className={classes.menuItem}
-								key={key}
-								onClick={() => onSelect(key)}
-								onKeyDown={({ code }) => code === "Escape" && onToggle()}
-							>
-								<Checkbox checked={keys.includes(key)} />
-								{description}
-							</MenuItem>
-						))}
-					</Menu>
-				)}
+				<Menu className={classes.menu}>
+					{items.map(({ description, key }) => (
+						<MenuItem
+							className={classes.menuItem}
+							key={key}
+							onClick={() => onSelect(key)}
+							onKeyDown={({ code }) => code === "Escape" && onToggle()}
+						>
+							<Checkbox checked={keys.includes(key)} />
+							{description}
+						</MenuItem>
+					))}
+				</Menu>
 			</Dropdown>
 		</div>
 	);

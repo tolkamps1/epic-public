@@ -68,7 +68,7 @@ const Home = () => {
 						{showUpdates && (
 							<div className={classes.feed}>
 								<UpdatesFeed setSelectedTab={setSelectedTab} />
-                <PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
+								<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
 							</div>
 						)}
 					</div>

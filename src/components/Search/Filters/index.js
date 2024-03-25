@@ -90,12 +90,12 @@ const Filters = () => {
 				{!!selectedFilters.length && (
 					<>
 						<ul className={classes.list}>
-							{selectedFilters.map(({ color = "success", description, filterKey, key, legislation }, i) => (
+							{selectedFilters.map(({ color = "success", description, filterKey, key }, i) => (
 								<li key={i}>
 									<Chip
 										className={filterKey}
 										color={color}
-										label={filterKey === FILTER_KEYS.PROJECT_PHASES ? `${description} (${legislation})` : description}
+										label={description}
 										onDelete={() => onRemoveFilter(filterKey, key)}
 										deleteIcon={<CloseRoundedIcon />}
 									/>

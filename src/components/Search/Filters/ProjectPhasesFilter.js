@@ -17,18 +17,27 @@ const ProjectPhasesFilter = () => {
 
 	const { data = [{ searchResults: [] }] } = useLists({ enabled: true });
 
-	const items = useMemo(
-		() =>
-			data[0].searchResults
-				.filter((item) => item.type === "projectPhase")
-				.map(({ _id, legislation, name }) => ({
-					description: name,
-					filterKey,
-					key: _id,
-					legislation,
-				})),
-		[data],
-	);
+	const items = useMemo(() => {
+		return data[0].searchResults
+			.filter((item) => item.type === "projectPhase")
+			.reduce((acc, item) => {
+				const existingItem = acc.find((i) => i.description === item.name);
+				if (existingItem) {
+					existingItem.key.push(item._id);
+				} else {
+					acc.push({
+						description: item.name,
+						key: [item._id],
+						filterKey,
+					});
+				}
+				return acc;
+			}, [])
+			.map((item) => {
+				return { ...item, key: item.key.join(",") };
+			})
+			.sort((a, b) => a.description > b.description);
+	}, [data]);
 
 	const selected = useMemo(() => selectedFilters.filter(({ filterKey: fk }) => fk === filterKey), [selectedFilters]);
 
