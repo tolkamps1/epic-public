@@ -11,10 +11,10 @@ export const getOrganizations = (type) => {
 	return api.get(apiConfig, `/organization?companyType=${type}&sortBy=+name&fields=name`);
 };
 
-export const getPcps = (thirtyDaysAgo) => {
+export const getPcps = (isoDate) => {
 	return api.get(
 		apiConfig,
-		`/search?dataset=CommentPeriod&pageNum=0&pageSize=1000&sortBy=-dateStarted&populate=true&and[dateCompletedStart]=${thirtyDaysAgo}`,
+		`/search?dataset=CommentPeriod&pageNum=0&pageSize=1000&sortBy=-dateStarted&populate=true&and[dateCompletedStart]=${isoDate}`,
 	);
 };
 

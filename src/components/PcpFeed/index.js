@@ -9,7 +9,7 @@ import PcpFooter from "./PcpFooter";
 import PcpHeader from "./PcpHeader";
 import pcpImage from "./pcpImage.jpeg";
 
-import { getFormatDateAsISOString, subtractDays } from "services/date";
+import { subtractDays } from "services/date";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
@@ -53,8 +53,7 @@ const useStyles = makeStyles()((theme) => ({
 const PcpFeed = ({ setSelectedTab }) => {
 	const { classes } = useStyles();
 
-	const now = new Date();
-	const thirtyDaysAgo = getFormatDateAsISOString(subtractDays(now, 30));
+	const thirtyDaysAgo = subtractDays(new Date(), 30);
 
 	const { data = [{ searchResults: [] }] } = usePcps(thirtyDaysAgo);
 	const pcps = useMemo(

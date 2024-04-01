@@ -1,32 +1,47 @@
-export const getFormatDateLongMonth = (date) => {
-	const formattedDate = new Intl.DateTimeFormat("en-US", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	}).format(date);
+const _format = (date, options = {}) => new Intl.DateTimeFormat("en-US", options).format(date);
 
-	return formattedDate;
+const _isValidDate = (date) => date instanceof Date && !isNaN(date);
+
+const _getValidDate = (dateOrString, caller = "") => {
+	const date = new Date(dateOrString);
+	if (_isValidDate(date)) return date;
+
+	throw new Error(`date service: ${caller}: invalid date: ${dateOrString}`);
 };
 
-export const getFormatDateAsISOString = (date) => {
+export const formatDateLongMonth = (dateOrString = new Date()) => {
+	const date = _getValidDate(dateOrString, "formatDateLongMonth");
+
+	return _format(date, { day: "numeric", month: "long", year: "numeric" });
+};
+
+export const formatDateOnlyISO = (dateOrString = new Date()) => {
+	const date = _getValidDate(dateOrString, "formatDateOnlyISO");
+
 	return date.toISOString().substring(0, 10);
 };
 
-export const isAfterDate = (date) => {
-	const currentDate = new Date();
+export const isAfterDate = (dateOrString, dateOrString2 = new Date()) => {
+	const date = _getValidDate(dateOrString, "isAfterDate");
+	const date2 = _getValidDate(dateOrString2, "isAfterDate");
 
-	return currentDate > date;
+	return date > date2;
 };
 
-export const isBetweenDates = (startDate, endDate) => {
-	const currentDate = new Date();
+export const isBetweenDates = (dateOrString, beforeDateOrString, afterDateOrString) => {
+	const date = _getValidDate(dateOrString, "isBetweenDates");
+	const beforeDate = _getValidDate(beforeDateOrString, "isBetweenDates");
+	const afterDate = _getValidDate(afterDateOrString, "isBetweenDates");
 
-	return currentDate >= startDate && currentDate <= endDate;
+	return date >= beforeDate && date <= afterDate;
 };
 
-export const subtractDays = (date, daysToSubtract) => {
-	const result = new Date(date);
-	result.setDate(result.getDate() - daysToSubtract);
+export const isValidDate = (dateOrString) => _isValidDate(dateOrString);
 
-	return result;
+export const subtractDays = (dateOrString, days = 0) => {
+	const date = _getValidDate(dateOrString, "subtractDays");
+
+	date.setDate(date.getDate() - days);
+
+	return date;
 };
