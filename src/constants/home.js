@@ -1,0 +1,51 @@
+import { FILTER_KEYS } from "constants/filters";
+
+export const HOME_TAB_KEYS = {
+	PROJECTS: 0,
+	DOCUMENTS: 1,
+	PUBLIC_COMMENT_PERIODS: 2,
+	UPDATES: 3,
+	MAP: 4,
+};
+export const HOME_TABS = [
+	{
+		filters: [
+			FILTER_KEYS.PROJECT_TYPES,
+			FILTER_KEYS.PROJECT_REGIONS,
+			FILTER_KEYS.PROPONENTS,
+			FILTER_KEYS.PROJECT_PHASES,
+		],
+		key: HOME_TAB_KEYS.PROJECTS,
+		name: "Search Projects",
+	},
+	{
+		filters: [
+			FILTER_KEYS.DOCUMENT_TYPES,
+			FILTER_KEYS.DOCUMENT_AUTHORS,
+			FILTER_KEYS.DATE_RANGE,
+			FILTER_KEYS.PROJECT_PHASES,
+		],
+		key: HOME_TAB_KEYS.DOCUMENTS,
+		name: "Search Documents",
+	},
+	{
+		filters: [FILTER_KEYS.DATE_RANGE, FILTER_KEYS.PROJECT_PHASES, FILTER_KEYS.STATUS],
+		key: HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS,
+		name: "Public Comment Periods",
+	},
+	{
+		filters: [FILTER_KEYS.DATE_RANGE, FILTER_KEYS.PROJECT_PHASES, FILTER_KEYS.UPDATE_TYPES],
+		key: HOME_TAB_KEYS.UPDATES,
+		name: "Updates",
+	},
+	{
+		filters: [
+			FILTER_KEYS.PROJECT_TYPES,
+			FILTER_KEYS.PROJECT_REGIONS,
+			FILTER_KEYS.PROPONENTS,
+			FILTER_KEYS.PROJECT_PHASES,
+		],
+		key: HOME_TAB_KEYS.MAP,
+		name: "View Map",
+	},
+];

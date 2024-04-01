@@ -3,7 +3,7 @@ import { makeStyles } from "tss-react/mui";
 
 import { Button } from "@mui/material";
 
-import { HOME_TAB_KEYS } from "constants";
+import { HOME_TAB_KEYS } from "constants/home";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {

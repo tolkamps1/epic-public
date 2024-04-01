@@ -6,7 +6,7 @@ import { useSearch } from "contexts/Search";
 
 import Filter from "components/Filter";
 
-import { DATE_RANGE, FILTER_KEYS } from "constants";
+import { DATE_RANGE, FILTER_KEYS } from "constants/filters";
 
 const filterKey = FILTER_KEYS.DATE_RANGE;
 

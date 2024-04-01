@@ -10,7 +10,7 @@ import UpdatesFeed from "components/UpdatesFeed";
 
 import Projects from "./Projects";
 
-import { HOME_TAB_KEYS, HOME_TABS } from "constants";
+import { HOME_TAB_KEYS, HOME_TABS } from "constants/home";
 
 const useStyles = makeStyles()((theme) => ({
 	selectedTab: {

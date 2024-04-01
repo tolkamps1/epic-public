@@ -4,7 +4,7 @@ import Search from "components/Search";
 
 import ProjectResults from "./Results";
 
-import { HOME_TAB_KEYS } from "constants";
+import { HOME_TAB_KEYS } from "constants/home";
 
 const Projects = () => {
 	return (

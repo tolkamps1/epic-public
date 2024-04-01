@@ -8,7 +8,7 @@ import useOrganizations from "queries/useOrganizations";
 
 import Filter from "components/Filter";
 
-import { FILTER_KEYS } from "constants";
+import { FILTER_KEYS } from "constants/filters";
 
 const filterKey = FILTER_KEYS.PROPONENTS;
 

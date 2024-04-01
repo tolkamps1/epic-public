@@ -9,69 +9,7 @@ export const FILTER_KEYS = {
 	STATUS: "status",
 	UPDATE_TYPES: "updateTypes",
 };
-export const HOME_TAB_KEYS = {
-	PROJECTS: 0,
-	DOCUMENTS: 1,
-	PUBLIC_COMMENT_PERIODS: 2,
-	UPDATES: 3,
-	MAP: 4,
-};
-export const PROJECT_TYPE_KEYS = {
-	ENERGY_ELECTRICITY: "Energy-Electricity",
-	ENERGY_PATROLIUM: "Energy-Petroleum & Natural Gas",
-	FOOD_PROCESSING: "Food Processing",
-	INDUSTRIAL: "Industrial",
-	MINES: "Mines",
-	OTHER: "Other",
-	TOURIST_DESTINATION: "Tourist Destination Resorts",
-	TRANSPORTATION: "Transportation",
-	WASTE_DISPOSAL: "Waste Disposal",
-	WATER_MANAGEMENT: "Water Management",
-};
-
-export const HOME_TABS = [
-	{
-		filters: [
-			FILTER_KEYS.PROJECT_TYPES,
-			FILTER_KEYS.PROJECT_REGIONS,
-			FILTER_KEYS.PROPONENTS,
-			FILTER_KEYS.PROJECT_PHASES,
-		],
-		key: HOME_TAB_KEYS.PROJECTS,
-		name: "Search Projects",
-	},
-	{
-		filters: [
-			FILTER_KEYS.DOCUMENT_TYPES,
-			FILTER_KEYS.DOCUMENT_AUTHORS,
-			FILTER_KEYS.DATE_RANGE,
-			FILTER_KEYS.PROJECT_PHASES,
-		],
-		key: HOME_TAB_KEYS.DOCUMENTS,
-		name: "Search Documents",
-	},
-	{
-		filters: [FILTER_KEYS.DATE_RANGE, FILTER_KEYS.PROJECT_PHASES, FILTER_KEYS.STATUS],
-		key: HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS,
-		name: "Public Comment Periods",
-	},
-	{
-		filters: [FILTER_KEYS.DATE_RANGE, FILTER_KEYS.PROJECT_PHASES, FILTER_KEYS.UPDATE_TYPES],
-		key: HOME_TAB_KEYS.UPDATES,
-		name: "Updates",
-	},
-	{
-		filters: [
-			FILTER_KEYS.PROJECT_TYPES,
-			FILTER_KEYS.PROJECT_REGIONS,
-			FILTER_KEYS.PROPONENTS,
-			FILTER_KEYS.PROJECT_PHASES,
-		],
-		key: HOME_TAB_KEYS.MAP,
-		name: "View Map",
-	},
-];
-// Filter options
+// filter options
 export const DATE_RANGE = [
 	{ description: "Option 1", key: "1" },
 	{ description: "Option 2", key: "2" },
@@ -103,6 +41,18 @@ export const PROJECT_REGIONS = [
 	{ description: "Thompson-Nicola", key: "Thompson-Nicola" },
 	{ description: "Vancouver Island", key: "Vancouver Island" },
 ];
+export const PROJECT_TYPE_KEYS = {
+	ENERGY_ELECTRICITY: "Energy-Electricity",
+	ENERGY_PATROLIUM: "Energy-Petroleum & Natural Gas",
+	FOOD_PROCESSING: "Food Processing",
+	INDUSTRIAL: "Industrial",
+	MINES: "Mines",
+	OTHER: "Other",
+	TOURIST_DESTINATION: "Tourist Destination Resorts",
+	TRANSPORTATION: "Transportation",
+	WASTE_DISPOSAL: "Waste Disposal",
+	WATER_MANAGEMENT: "Water Management",
+};
 export const PROJECT_TYPES = [
 	{ description: "Energy-Electricity", key: PROJECT_TYPE_KEYS.ENERGY_ELECTRICITY },
 	{ description: "Energy-Petroleum & Natural Gas", key: PROJECT_TYPE_KEYS.ENERGY_PATROLIUM },

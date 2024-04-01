@@ -2,6 +2,8 @@ import { makeStyles } from "tss-react/mui";
 
 import logo from "./header.png";
 
+import { PAGE_PATHS } from "constants/general";
+
 const useStyles = makeStyles()((theme) => ({
 	header: {
 		display: "flex",
@@ -51,13 +53,13 @@ const Header = () => {
 			<nav aria-label="main" className={classes.nav}>
 				<ul>
 					<li>
-						<a href="/">Home</a>
+						<a href={PAGE_PATHS.HOME}>Home</a>
 					</li>
 					<li>
-						<a href="/process">The Environmental Assessment Process</a>
+						<a href={PAGE_PATHS.PROCESS}>The Environmental Assessment Process</a>
 					</li>
 					<li>
-						<a href="/contact">Contact Us</a>
+						<a href={PAGE_PATHS.CONTACT}>Contact Us</a>
 					</li>
 				</ul>
 			</nav>

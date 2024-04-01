@@ -6,7 +6,7 @@ import { useSearch } from "contexts/Search";
 
 import Filter from "components/Filter";
 
-import { DOCUMENT_AUTHORS, FILTER_KEYS } from "constants";
+import { DOCUMENT_AUTHORS, FILTER_KEYS } from "constants/filters";
 
 const filterKey = FILTER_KEYS.DOCUMENT_AUTHORS;
 
