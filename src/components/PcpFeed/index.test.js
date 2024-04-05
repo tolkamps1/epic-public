@@ -13,22 +13,22 @@ describe("PcpFeed tests", () => {
 		usePcps.mockReturnValue({ isError: false, isSuccess: false });
 	});
 
-	const mockSetSelectedTab = jest.fn();
+	const mockOnSelectTab = jest.fn();
 
 	test("PcpFeed renders correctly", () => {
-		render(<PcpFeed setSelectedTab={mockSetSelectedTab} />);
+		render(<PcpFeed onSelectTab={mockOnSelectTab} />);
 
 		expect(screen.getByText("Public Comment Periods")).toBeInTheDocument();
 		expect(screen.getByText("Upcoming, open, and recently closed Public Comment Periods:")).toBeInTheDocument();
 	});
 
-	test("handleTabButtonClick calls setSelectedTab with the correct index", () => {
-		render(<PcpFeed setSelectedTab={mockSetSelectedTab} />);
+	test("onClick calls onSelectTab with the correct index", () => {
+		render(<PcpFeed onSelectTab={mockOnSelectTab} />);
 
 		const footerButton = screen.getByRole("button", { name: "Search all Public Comment Periods >" });
 		expect(footerButton).toBeInTheDocument();
 		fireEvent.click(footerButton);
 
-		expect(mockSetSelectedTab).toHaveBeenCalledWith(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS);
+		expect(mockOnSelectTab).toHaveBeenCalledWith(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS);
 	});
 });

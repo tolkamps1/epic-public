@@ -81,7 +81,7 @@ const useStyles = makeStyles()((theme) => ({
 	},
 }));
 
-const PcpFeed = ({ setSelectedTab }) => {
+const PcpFeed = ({ onSelectTab }) => {
 	const { classes } = useStyles();
 
 	const thirtyDaysAgo = subtractDays(new Date(), 30);
@@ -98,10 +98,6 @@ const PcpFeed = ({ setSelectedTab }) => {
 			})),
 		[data],
 	);
-
-	const handleTabButtonClick = (index) => {
-		setSelectedTab(index);
-	};
 
 	return (
 		<div className={classes.container}>
@@ -125,7 +121,7 @@ const PcpFeed = ({ setSelectedTab }) => {
 							className={classes.pcpButton}
 							color="primary"
 							variant="text"
-							onClick={() => handleTabButtonClick(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS)}
+							onClick={() => onSelectTab(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS)}
 						>
 							Search all Public Comment Periods &gt;
 						</Button>
@@ -137,7 +133,7 @@ const PcpFeed = ({ setSelectedTab }) => {
 };
 
 PcpFeed.propTypes = {
-	setSelectedTab: PropTypes.func.isRequired,
+	onSelectTab: PropTypes.func.isRequired,
 };
 
 export default PcpFeed;
