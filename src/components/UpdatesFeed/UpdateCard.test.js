@@ -3,20 +3,16 @@ import { render, screen } from "@testing-library/react";
 import UpdateCard from "./UpdateCard";
 
 describe("UpdateCard tests", () => {
-	let mockProject, viewDocumentButtonName, viewPcpButtonName, viewProjectButtonName;
-
-	beforeEach(() => {
-		mockProject = {
-			_id: "1",
-			location: "Location",
-			name: "Project 1",
-			region: "Region",
-			type: "type",
-		};
-		viewDocumentButtonName = "View Document(s)";
-		viewPcpButtonName = "View Engagement";
-		viewProjectButtonName = "View Project";
-	});
+	const mockProject = {
+		_id: "1",
+		location: "Location",
+		name: "Project 1",
+		region: "Region",
+		type: "type",
+	};
+	const viewDocumentButtonName = "View Document(s)";
+	const viewPcpButtonName = "View Engagement";
+	const viewProjectButtonName = "View Project";
 
 	describe("when the update has no documents or PCPs", () => {
 		test("should render the UpdateCard correctly", () => {
@@ -30,15 +26,15 @@ describe("UpdateCard tests", () => {
 
 			render(<UpdateCard {...mockUpdate} />);
 
-			const documentButton = screen.queryByRole("button", { name: viewDocumentButtonName });
-			const pcpButton = screen.queryByRole("button", { name: viewPcpButtonName });
-			const projectLink = screen.getByText(viewProjectButtonName).closest("a");
 			expect(screen.getByText(`${mockUpdate.project.name} - Work`)).toBeInTheDocument();
 			expect(screen.getByText(mockUpdate.updateName)).toBeInTheDocument();
 			expect(screen.getByText(mockUpdate.updateContent)).toBeInTheDocument();
-			expect(documentButton).not.toBeInTheDocument("Document button should not be rendered");
-			expect(pcpButton).not.toBeInTheDocument("Pcp button should not be rendered");
-			expect(projectLink.pathname).toBe(`/p/${mockUpdate.project._id}/project-details`);
+			expect(screen.queryByRole("button", { name: viewDocumentButtonName })).not.toBeInTheDocument();
+			expect(screen.queryByRole("button", { name: viewPcpButtonName })).not.toBeInTheDocument();
+
+			const projectLink = screen.getByRole("link", { name: viewProjectButtonName });
+			expect(projectLink).toBeInTheDocument();
+			expect(projectLink).toHaveAttribute("href", `/p/${mockUpdate.project._id}/project-details`);
 		});
 	});
 
@@ -60,15 +56,21 @@ describe("UpdateCard tests", () => {
 
 			render(<UpdateCard {...mockMetPcpUpdate} />);
 
-			const documentLink = screen.getByText(viewDocumentButtonName).closest("a");
-			const metLink = screen.getByText(viewPcpButtonName).closest("a");
-			const projectLink = screen.getByText(viewProjectButtonName).closest("a");
 			expect(screen.getByText(`${mockMetPcpUpdate.project.name} - Work`)).toBeInTheDocument();
 			expect(screen.getByText(mockMetPcpUpdate.updateName)).toBeInTheDocument();
 			expect(screen.getByText(mockMetPcpUpdate.updateContent)).toBeInTheDocument();
-			expect(documentLink.href).toBe(mockMetPcpUpdate.documentUrl);
-			expect(metLink.href).toBe(mockMetPcpUpdate.pcp.metURL);
-			expect(projectLink.pathname).toBe(`/p/${mockMetPcpUpdate.project._id}/project-details`);
+
+			const documentLink = screen.getByRole("link", { name: viewDocumentButtonName });
+			expect(documentLink).toBeInTheDocument();
+			expect(documentLink).toHaveAttribute("href", mockMetPcpUpdate.documentUrl);
+
+			const metLink = screen.getByRole("link", { name: viewPcpButtonName });
+			expect(metLink).toBeInTheDocument();
+			expect(metLink).toHaveAttribute("href", mockMetPcpUpdate.pcp.metURL);
+
+			const projectLink = screen.getByRole("link", { name: viewProjectButtonName });
+			expect(projectLink).toBeInTheDocument();
+			expect(projectLink).toHaveAttribute("href", `/p/${mockMetPcpUpdate.project._id}/project-details`);
 		});
 	});
 
@@ -90,15 +92,24 @@ describe("UpdateCard tests", () => {
 
 			render(<UpdateCard {...mockPublicPcpUpdate} />);
 
-			const documentLink = screen.getByText(viewDocumentButtonName).closest("a");
-			const pcpLink = screen.getByText(viewPcpButtonName).closest("a");
-			const projectLink = screen.getByText(viewProjectButtonName).closest("a");
 			expect(screen.getByText(`${mockPublicPcpUpdate.project.name} - Work`)).toBeInTheDocument();
 			expect(screen.getByText(mockPublicPcpUpdate.updateName)).toBeInTheDocument();
 			expect(screen.getByText(mockPublicPcpUpdate.updateContent)).toBeInTheDocument();
-			expect(documentLink.href).toBe(mockPublicPcpUpdate.documentUrl);
-			expect(pcpLink.pathname).toBe(`/p/${mockPublicPcpUpdate.project._id}/cp/${mockPublicPcpUpdate.pcp._id}`);
-			expect(projectLink.pathname).toBe(`/p/${mockPublicPcpUpdate.project._id}/project-details`);
+
+			const documentLink = screen.getByRole("link", { name: viewDocumentButtonName });
+			expect(documentLink).toBeInTheDocument();
+			expect(documentLink).toHaveAttribute("href", mockPublicPcpUpdate.documentUrl);
+
+			const pcpLink = screen.getByRole("link", { name: viewPcpButtonName });
+			expect(pcpLink).toBeInTheDocument();
+			expect(pcpLink).toHaveAttribute(
+				"href",
+				`/p/${mockPublicPcpUpdate.project._id}/cp/${mockPublicPcpUpdate.pcp._id}`,
+			);
+
+			const projectLink = screen.getByRole("link", { name: viewProjectButtonName });
+			expect(projectLink).toBeInTheDocument();
+			expect(projectLink).toHaveAttribute("href", `/p/${mockPublicPcpUpdate.project._id}/project-details`);
 		});
 	});
 });

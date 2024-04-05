@@ -49,7 +49,7 @@ const useStyles = makeStyles()((theme) => ({
 	},
 }));
 
-const UpdatesFeed = ({ setSelectedTab }) => {
+const UpdatesFeed = ({ onSelectTab }) => {
 	const { classes } = useStyles();
 
 	const { data = [] } = useRecentActivity();
@@ -79,12 +79,12 @@ const UpdatesFeed = ({ setSelectedTab }) => {
 					className={classes.updatesButton}
 					color="primary"
 					variant="text"
-					onClick={() => setSelectedTab(HOME_TAB_KEYS.UPDATES)}
+					onClick={() => onSelectTab(HOME_TAB_KEYS.UPDATES)}
 				>
 					Search all Updates &gt;
 				</Button>
 			</div>
-			<ul className={classes.cardList}>
+			<ul aria-label="Updates list" className={classes.cardList}>
 				{updates.map((update) => (
 					<li key={update.key}>
 						<UpdateCard {...update} />
@@ -96,7 +96,7 @@ const UpdatesFeed = ({ setSelectedTab }) => {
 };
 
 UpdatesFeed.propTypes = {
-	setSelectedTab: PropTypes.func.isRequired,
+	onSelectTab: PropTypes.func.isRequired,
 };
 
 export default UpdatesFeed;
