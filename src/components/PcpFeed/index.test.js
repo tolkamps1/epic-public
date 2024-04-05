@@ -1,5 +1,4 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import usePcps from "queries/usePcps";
 
@@ -27,7 +26,8 @@ describe("PcpFeed tests", () => {
 		render(<PcpFeed setSelectedTab={mockSetSelectedTab} />);
 
 		const footerButton = screen.getByRole("button", { name: "Search all Public Comment Periods >" });
-		footerButton.click();
+		expect(footerButton).toBeInTheDocument();
+		fireEvent.click(footerButton);
 
 		expect(mockSetSelectedTab).toHaveBeenCalledWith(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS);
 	});
