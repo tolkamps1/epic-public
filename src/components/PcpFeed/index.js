@@ -2,14 +2,16 @@ import { PropTypes } from "prop-types";
 import { useMemo } from "react";
 import { makeStyles } from "tss-react/mui";
 
+import { Button } from "@mui/material";
+
 import usePcps from "queries/usePcps";
 
 import PcpCard from "./PcpCard";
-import PcpFooter from "./PcpFooter";
-import PcpHeader from "./PcpHeader";
 import pcpImage from "./pcpImage.jpeg";
 
 import { subtractDays } from "services/date";
+
+import { HOME_TAB_KEYS } from "constants/home";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
@@ -23,6 +25,25 @@ const useStyles = makeStyles()((theme) => ({
 			flex: "1 0 100%",
 			padding: "1rem",
 		},
+	},
+	header: {
+		color: "white",
+		display: "flex",
+		padding: "4rem, 0.625rem, 0.625rem, 0",
+		justifyContent: "space-between",
+		width: "100%",
+		flexDirection: "column",
+	},
+	headerTitle: {
+		fontWeight: "700",
+		fontSize: "1.5rem",
+		color: "black",
+		margin: "0.625rem 0 0 0",
+	},
+	line: {
+		width: "2.25rem",
+		height: "2rem",
+		borderBottom: "5px solid #FCBA19",
 	},
 	subheader: {
 		color: theme.palette.text.primary,
@@ -48,9 +69,19 @@ const useStyles = makeStyles()((theme) => ({
 	content: {
 		padding: "0 2rem 0 1rem",
 	},
+	footer: {
+		color: "white",
+		display: "flex",
+		padding: "0.625rem 1rem 0.625rem 0",
+		width: "100%",
+	},
+	pcpButton: {
+		fontSize: "1.25rem",
+		paddingLeft: "0",
+	},
 }));
 
-const PcpFeed = ({ setSelectedTab }) => {
+const PcpFeed = ({ onSelectTab }) => {
 	const { classes } = useStyles();
 
 	const thirtyDaysAgo = subtractDays(new Date(), 30);
@@ -68,13 +99,14 @@ const PcpFeed = ({ setSelectedTab }) => {
 		[data],
 	);
 
-	const handleTabButtonClick = (index) => {
-		setSelectedTab(index);
-	};
-
 	return (
 		<div className={classes.container}>
-			<PcpHeader />
+			<div className={classes.header}>
+				<div>
+					<div className={classes.line} />
+					<h1 className={classes.headerTitle}>Public Comment Periods</h1>
+				</div>
+			</div>
 			<div className={classes.deck}>
 				<div className={classes.image}>
 					<img alt="Man at computer" aria-hidden="true" src={pcpImage} />
@@ -84,7 +116,16 @@ const PcpFeed = ({ setSelectedTab }) => {
 					{pcps.map((pcp) => (
 						<PcpCard key={pcp.key} {...pcp} />
 					))}
-					<PcpFooter onButtonNavClick={handleTabButtonClick}></PcpFooter>
+					<div className={classes.footer}>
+						<Button
+							className={classes.pcpButton}
+							color="primary"
+							variant="text"
+							onClick={() => onSelectTab(HOME_TAB_KEYS.PUBLIC_COMMENT_PERIODS)}
+						>
+							Search all Public Comment Periods &gt;
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -92,7 +133,7 @@ const PcpFeed = ({ setSelectedTab }) => {
 };
 
 PcpFeed.propTypes = {
-	setSelectedTab: PropTypes.func.isRequired,
+	onSelectTab: PropTypes.func.isRequired,
 };
 
 export default PcpFeed;

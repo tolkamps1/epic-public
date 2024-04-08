@@ -64,7 +64,7 @@ const PcpCard = ({ dateCompleted, dateStarted, phaseName, projectName }) => {
 			if (isBetweenDates(new Date(), dateStarted, dateCompleted)) {
 				return "Open";
 			}
-			if (isAfterDate(dateCompleted)) {
+			if (isAfterDate(new Date(), dateCompleted)) {
 				return "Closed";
 			}
 			return "Upcoming";
