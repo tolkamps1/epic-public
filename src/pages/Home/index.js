@@ -52,7 +52,7 @@ const Home = () => {
 						<Projects />
 						<div className={classes.feed}>
 							<UpdatesFeed onSelectTab={setSelectedTab} />
-							<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
+							<PcpFeed onSelectTab={setSelectedTab}></PcpFeed>
 						</div>
 					</div>
 				) : selectedTab === HOME_TAB_KEYS.DOCUMENTS ? (
