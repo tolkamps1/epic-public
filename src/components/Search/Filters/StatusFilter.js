@@ -6,7 +6,7 @@ import { useSearch } from "contexts/Search";
 
 import Filter from "components/Filter";
 
-import { FILTER_KEYS, STATUSES } from "constants";
+import { FILTER_KEYS, STATUSES } from "constants/filters";
 
 const filterKey = FILTER_KEYS.STATUS;
 

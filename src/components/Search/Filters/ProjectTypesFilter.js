@@ -6,7 +6,7 @@ import { useSearch } from "contexts/Search";
 
 import Filter from "components/Filter";
 
-import { FILTER_KEYS, PROJECT_TYPES } from "constants";
+import { FILTER_KEYS, PROJECT_TYPES } from "constants/filters";
 
 const filterKey = FILTER_KEYS.PROJECT_TYPES;
 

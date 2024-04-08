@@ -8,7 +8,7 @@ import PropaneOutlinedIcon from "@mui/icons-material/PropaneOutlined";
 import TourOutlinedIcon from "@mui/icons-material/TourOutlined";
 import WaterDamageOutlinedIcon from "@mui/icons-material/WaterDamageOutlined";
 
-import { PROJECT_TYPE_KEYS } from "constants";
+import { PROJECT_TYPE_KEYS } from "constants/filters";
 
 export const getProjectIcon = (projectType) => {
 	switch (projectType) {

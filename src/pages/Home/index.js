@@ -10,7 +10,7 @@ import UpdatesFeed from "components/UpdatesFeed";
 
 import Projects from "./Projects";
 
-import { HOME_TAB_KEYS, HOME_TABS } from "constants";
+import { HOME_TAB_KEYS, HOME_TABS } from "constants/home";
 
 const useStyles = makeStyles()((theme) => ({
 	selectedTab: {
@@ -64,6 +64,11 @@ const Home = () => {
 			<div role="tabpanel">
 				{selectedTab === HOME_TAB_KEYS.PROJECTS ? (
 					<div>
+						<Projects />
+						<div className={classes.feed}>
+							<UpdatesFeed setSelectedTab={setSelectedTab} />
+							<PcpFeed onSelectTab={setSelectedTab}></PcpFeed>
+						</div>
 						<Projects setShowUpdates={setShowUpdates} />
 						{showUpdates && (
 							<div className={classes.feed}>

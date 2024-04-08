@@ -8,7 +8,7 @@ import ProponentsFilter from "./ProponentsFilter";
 import StatusFilter from "./StatusFilter";
 import UpdateTypesFilter from "./UpdateTypesFilter";
 
-import { FILTER_KEYS } from "constants";
+import { FILTER_KEYS } from "constants/filters";
 
 export const getFilterComponent = (filterKey) => {
 	switch (filterKey) {

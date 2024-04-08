@@ -48,6 +48,12 @@
 			"react-app/jest"
 		]
 	},
+	"jest": {
+		"resetMocks": true,
+		"transformIgnorePatterns": [
+			"node_modules/?!(react-native|native-base)"
+		]
+	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
 	},
