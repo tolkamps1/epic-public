@@ -52,6 +52,8 @@ describe("UpdatesFeed tests", () => {
 		test("should render the expected number of UpdateCard components in a list", () => {
 			render(<UpdatesFeed onSelectTab={mockOnSelectTab} />);
 
+			expect(screen.getByRole("list", { name: "Updates list" })).toBeInTheDocument();
+
 			const updateCards = screen.getAllByRole("listitem");
 			expect(updateCards.length).toBe(mockData.length);
 
