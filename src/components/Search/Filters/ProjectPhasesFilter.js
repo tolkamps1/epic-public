@@ -8,7 +8,7 @@ import useLists from "queries/useLists";
 
 import Filter from "components/Filter";
 
-import { FILTER_KEYS, PROJECT_PHASES } from "constants/filters";
+import { FILTER_KEYS } from "constants/filters";
 
 const filterKey = FILTER_KEYS.PROJECT_PHASES;
 
