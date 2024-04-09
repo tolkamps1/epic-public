@@ -51,7 +51,7 @@ const Home = () => {
 					<div>
 						<Projects />
 						<div className={classes.feed}>
-							<UpdatesFeed setSelectedTab={setSelectedTab} />
+							<UpdatesFeed onSelectTab={setSelectedTab} />
 							<PcpFeed onSelectTab={setSelectedTab}></PcpFeed>
 						</div>
 					</div>
