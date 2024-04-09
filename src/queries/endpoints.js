@@ -1,6 +1,6 @@
 import api from "services/api";
 
-import { API_FILTER_KEYS } from "constants";
+import { API_FILTER_KEYS } from "constants/filters";
 
 const apiConfig = {
 	url:

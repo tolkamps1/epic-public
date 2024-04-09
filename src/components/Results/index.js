@@ -3,7 +3,7 @@ import { makeStyles } from "tss-react/mui";
 
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel } from "@mui/material";
 
-import ResultsPagination from "./ResultsPagination";
+import ResultsPagination from "./Pagination";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {

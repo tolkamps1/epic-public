@@ -64,16 +64,11 @@ const Home = () => {
 			<div role="tabpanel">
 				{selectedTab === HOME_TAB_KEYS.PROJECTS ? (
 					<div>
-						<Projects />
-						<div className={classes.feed}>
-							<UpdatesFeed onSelectTab={setSelectedTab} />
-							<PcpFeed onSelectTab={setSelectedTab}></PcpFeed>
-						</div>
-						<Projects setShowUpdates={setShowUpdates} />
+						<Projects onShowUpdates={setShowUpdates} />
 						{showUpdates && (
 							<div className={classes.feed}>
-								<UpdatesFeed setSelectedTab={setSelectedTab} />
-								<PcpFeed setSelectedTab={setSelectedTab}></PcpFeed>
+								<UpdatesFeed onSelectTab={setSelectedTab} />
+								<PcpFeed onSelectTab={setSelectedTab}></PcpFeed>
 							</div>
 						)}
 					</div>

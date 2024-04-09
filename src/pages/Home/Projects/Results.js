@@ -9,9 +9,9 @@ import useProjects from "queries/useProjects";
 
 import Results from "components/Results";
 
-import { getFormatDateLongMonth } from "services/date.js";
+import { formatDateLongMonth } from "services/date.js";
 
-import { TABLE_DEFAULTS } from "constants";
+import { TABLE_DEFAULTS } from "constants/filters";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
@@ -80,7 +80,7 @@ const ProjectResults = ({ onSearch }) => {
 		() =>
 			data[0].searchResults.map(({ _id, currentPhaseName, dateUpdated, name, proponent, region, type }) => ({
 				currentPhaseName: currentPhaseName.name,
-				dateUpdated: getFormatDateLongMonth(new Date(dateUpdated)),
+				dateUpdated: formatDateLongMonth(new Date(dateUpdated)),
 				key: _id,
 				name,
 				proponent: proponent.name,
@@ -91,7 +91,6 @@ const ProjectResults = ({ onSearch }) => {
 	);
 
 	const metaData = useMemo(() => data[0].meta, [data]);
-	const totalResultCount = metaData.length > 0 ? metaData[0].searchResultsTotal : 0;
 
 	useEffect(() => {
 		onSearch(isSearching);
@@ -111,7 +110,7 @@ const ProjectResults = ({ onSearch }) => {
 					setOrderBy={setOrderBy}
 					setPageNum={setPageNum}
 					setPageSize={setPageSize}
-					totalResultCount={totalResultCount}
+					totalResultCount={metaData.length > 0 ? metaData[0].searchResultsTotal : 0}
 				/>
 			)}
 		</div>

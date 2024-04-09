@@ -1,22 +1,19 @@
 import PropTypes from "prop-types";
 import { makeStyles } from "tss-react/mui";
 
-import { Pagination, TablePagination } from "@mui/material";
+import { Button, Pagination, TablePagination } from "@mui/material";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-import PageFirstButton from "./PageFirstButton";
-import PageLastButton from "./PageLastButton";
-import PageNextButton from "./PageNextButton";
-import PagePreviousButton from "./PagePreviousButton";
-
-import { TABLE_DEFAULTS } from "constants";
+import { TABLE_DEFAULTS } from "constants/filters.js";
 
 const useStyles = makeStyles()((theme) => ({
 	container: {
 		display: "flex",
-		width: "100%",
 		fontSize: "0.875rem",
+		width: "100%",
 	},
 	subcontainer: {
 		display: "flex",
@@ -24,13 +21,29 @@ const useStyles = makeStyles()((theme) => ({
 		paddingRight: "2rem",
 	},
 	pageNavigation: {
-		display: "flex",
 		alignItems: "center",
+		display: "flex",
 	},
 	tablePagination: {
 		"& .MuiTablePagination-input": {
 			fontWeight: 700,
 			margin: "auto",
+		},
+	},
+	pageStep: {
+		borderRadius: "0.25rem",
+		color: theme.palette.text.primary,
+		fontSize: "0.875rem",
+		lineHeight: "1.5",
+		padding: "0.375rem 0.5rem",
+	},
+	pageJump: {
+		borderRadius: "0.25rem",
+		height: "1.75rem",
+		padding: "0",
+		"& svg": {
+			fontSize: "1.75rem",
+			color: theme.palette.text.primary,
 		},
 	},
 	pagination: {
@@ -50,6 +63,7 @@ const useStyles = makeStyles()((theme) => ({
 
 const ResultsPagination = ({ pageNum, pageSize, setPageNum, setPageSize, totalResultCount }) => {
 	const { classes } = useStyles();
+
 	// MUI Pagination component is 1-indexed
 	const pageNumberOffset = 1;
 
@@ -65,24 +79,16 @@ const ResultsPagination = ({ pageNum, pageSize, setPageNum, setPageSize, totalRe
 		return pageNumbers;
 	};
 
+	const isFirstPage = pageNum === 0;
+	const isLastPage = pageNum === Math.ceil(totalResultCount / pageSize) - 1;
+
 	const pageNumberOptions = getPageNumberOptions();
-
-	const handleChangePage = (event, newPage) => {
-		setPageNum(newPage);
-	};
-
-	const handleOneIndexedChangePage = (event, newPage) => {
-		setPageNum(newPage - pageNumberOffset);
-	};
 
 	const handleChangeRowsPerPage = (event) => {
 		setPageSize(parseInt(event.target.value, 10));
 		setPageNum(0);
 	};
 
-	const customLabelDisplayedRows = ({ from, to, count }) => {
-		return `of ${count} results`;
-	};
 	return (
 		<div className={classes.container}>
 			<div className={classes.subcontainer}>
@@ -90,11 +96,13 @@ const ResultsPagination = ({ pageNum, pageSize, setPageNum, setPageSize, totalRe
 					className={classes.tablePagination}
 					component="div"
 					count={totalResultCount}
-					page={pageNum}
-					onPageChange={handleChangePage}
-					onRowsPerPageChange={handleChangeRowsPerPage}
 					labelRowsPerPage="Showing"
-					labelDisplayedRows={customLabelDisplayedRows}
+					labelDisplayedRows={({ count }) => {
+						return `of ${count} results`;
+					}}
+					page={pageNum}
+					onPageChange={setPageNum}
+					onRowsPerPageChange={handleChangeRowsPerPage}
 					rowsPerPage={pageSize}
 					rowsPerPageOptions={pageNumberOptions}
 					showFirstButton={false}
@@ -114,40 +122,52 @@ const ResultsPagination = ({ pageNum, pageSize, setPageNum, setPageSize, totalRe
 					}}
 				/>
 				<div className={classes.pageNavigation}>
-					<PageFirstButton handleChangePage={handleChangePage} pageNum={pageNum} className={classes.navigationButton} />
-					<PagePreviousButton
-						className={classes.navigationButton}
-						handleChangePage={handleChangePage}
-						label="Previous"
-						pageNum={pageNum}
-						pageSize={pageSize}
-						totalResultCount={totalResultCount}
-					/>
+					<Button
+						aria-label="go to the last page"
+						className={classes.pageJump}
+						disabled={isFirstPage}
+						onClick={() => setPageNum(0)}
+						type="button"
+					>
+						<KeyboardDoubleArrowLeftIcon />
+					</Button>
+					<Button
+						aria-label="go to the previous page"
+						className={classes.pageStep}
+						disabled={isFirstPage}
+						onClick={() => setPageNum(pageNum - 1)}
+						type="button"
+					>
+						Previous
+					</Button>
 					<Pagination // 1 indexed
 						className={classes.pagination}
 						count={Math.ceil(totalResultCount / pageSize)}
 						hideNextButton={true}
 						hidePrevButton={true}
-						onChange={handleOneIndexedChangePage}
+						onChange={(event, newPage) => setPageNum(newPage - pageNumberOffset)}
 						page={pageNum + pageNumberOffset}
 						shape="rounded"
 						size="small"
 					/>
-					<PageNextButton
-						className={classes.navigationButton}
-						handleChangePage={handleChangePage}
-						label="Next"
-						pageNum={pageNum}
-						pageSize={pageSize}
-						totalResultCount={totalResultCount}
-					/>
-					<PageLastButton
-						className={classes.navigationButton}
-						handleChangePage={handleChangePage}
-						pageNum={pageNum}
-						pageSize={pageSize}
-						totalResultCount={totalResultCount}
-					/>
+					<Button
+						aria-label="go to the next page"
+						className={classes.pageStep}
+						disabled={isLastPage}
+						onClick={() => setPageNum(pageNum + 1)}
+						type="button"
+					>
+						Next
+					</Button>
+					<Button
+						aria-label={"go to the last page"}
+						className={classes.pageJump}
+						disabled={isLastPage}
+						onClick={() => setPageNum(Math.ceil(totalResultCount / pageSize) - 1)}
+						type="button"
+					>
+						<KeyboardDoubleArrowRightIcon />
+					</Button>
 				</div>
 			</div>
 		</div>

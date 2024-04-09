@@ -11,9 +11,6 @@ import Checkbox from "@mui/material/Checkbox";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { PROJECT_LEGISLATION_YEARS } from "constants";
-import { FILTER_KEYS } from "constants";
-
 const useStyles = makeStyles()((theme, { width }) => ({
 	filter: {
 		color: "white",
@@ -53,14 +50,14 @@ const useStyles = makeStyles()((theme, { width }) => ({
 		boxShadow: "2px 6px 8px 0px #0000001A",
 		border: "1px solid #EEEEEE",
 		borderRadius: "0 0 0.25rem 0.25rem",
+		maxHeight: "500px",
+		overflowY: "auto",
 		width: width,
 		"& ul": {
 			listStyleType: "none",
 			margin: 0,
 			padding: 0,
 		},
-		overflowY: "auto",
-		maxHeight: "500px",
 	},
 	menuItem: {
 		alignItems: "center",
@@ -69,10 +66,11 @@ const useStyles = makeStyles()((theme, { width }) => ({
 	},
 }));
 
-const Filter = ({ filterKey, icon, items = [], onChange, selected, title }) => {
+const Filter = ({ icon, items = [], onChange, selected, title }) => {
 	const [keys, setKeys] = useState(selected.map(({ key }) => key));
 	const [open, setOpen] = useState(false);
 	const [width, setWidth] = useState(0);
+
 	const { classes } = useStyles({ width });
 
 	const disabled = !items.length;
@@ -144,7 +142,6 @@ const Filter = ({ filterKey, icon, items = [], onChange, selected, title }) => {
 };
 
 Filter.propTypes = {
-	filterKey: PropTypes.string,
 	icon: PropTypes.element,
 	items: PropTypes.arrayOf(PropTypes.object).isRequired,
 	onChange: PropTypes.func.isRequired,
