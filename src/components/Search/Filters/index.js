@@ -35,28 +35,28 @@ const useStyles = makeStyles()((theme) => ({
 			fontSize: "1rem",
 			borderRadius: "0.25rem",
 		},
-		"& .projectPhases, .documentProjectPhases": {
+		"& .documentProjectPhases, .projectPhases": {
 			color: "#323130",
 			backgroundColor: "#F1F8FF",
 			"& svg": {
 				color: "#323130",
 			},
 		},
-		"& .projectRegions, .documentAuthors": {
+		"& .documentAuthors, .projectRegions": {
 			color: "#053662",
 			backgroundColor: "#E3EBFF",
 			"& svg": {
 				color: "#053662",
 			},
 		},
-		"& .proponents, .dateRange": {
+		"& .dateRange, .proponents": {
 			color: "#593F00",
 			backgroundColor: "#FFF8E8",
 			"& svg": {
 				color: "#593F00",
 			},
 		},
-		"& .type, .documentTypes": {
+		"& .documentTypes, .status, .type": {
 			color: "#553402",
 			backgroundColor: "#ffe095",
 			"& svg": {
