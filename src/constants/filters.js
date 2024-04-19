@@ -28,9 +28,9 @@ export const API_FILTER_KEYS = {
 	[FILTER_KEYS.PCP_RECENT]: "dateCompletedStart",
 	[FILTER_KEYS.PCP_PROJECT_PHASES]: "phaseName",
 	[FILTER_KEYS.PROJECT_PHASES]: "currentPhaseName",
-	[FILTER_KEYS.PROJECT_REGIONS]: "projectRegions",
+	[FILTER_KEYS.PROJECT_REGIONS]: "region",
 	[FILTER_KEYS.PROJECT_TYPES]: "type",
-	[FILTER_KEYS.PROPONENTS]: "proponents",
+	[FILTER_KEYS.PROPONENTS]: "proponent",
 	[FILTER_KEYS.STATUS]: "status",
 	[FILTER_KEYS.UPDATE_TYPES]: "updateTypes",
 };
@@ -83,7 +83,7 @@ export const PROJECT_REGIONS = [
 ];
 export const PROJECT_TYPE_KEYS = {
 	ENERGY_ELECTRICITY: "Energy-Electricity",
-	ENERGY_PATROLIUM: "Energy-Petroleum & Natural Gas",
+	ENERGY_PETROLEUM: "Energy-Petroleum & Natural Gas",
 	FOOD_PROCESSING: "Food Processing",
 	INDUSTRIAL: "Industrial",
 	MINES: "Mines",
@@ -100,7 +100,7 @@ export const DOCUMENT_TYPES = [
 ];
 export const PROJECT_TYPES = [
 	{ description: "Energy-Electricity", key: PROJECT_TYPE_KEYS.ENERGY_ELECTRICITY },
-	{ description: "Energy-Petroleum & Natural Gas", key: PROJECT_TYPE_KEYS.ENERGY_PATROLIUM },
+	{ description: "Energy-Petroleum & Natural Gas", key: PROJECT_TYPE_KEYS.ENERGY_PETROLEUM },
 	{ description: "Food Processing", key: PROJECT_TYPE_KEYS.FOOD_PROCESSING },
 	{ description: "Industrial", key: PROJECT_TYPE_KEYS.INDUSTRIAL },
 	{ description: "Mines", key: PROJECT_TYPE_KEYS.MINES },
