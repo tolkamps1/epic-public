@@ -15,7 +15,7 @@ const DateRangeFilter = ({ filterKey }) => {
 
 	const selected = useMemo(
 		() => selectedFilters.filter(({ filterKey: fk }) => fk === filterKey),
-		[selectedFilters, filterKey],
+		[filterKey, selectedFilters],
 	);
 
 	return (

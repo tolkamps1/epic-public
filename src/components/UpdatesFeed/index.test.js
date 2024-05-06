@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import { mockUseRecentActivitiesData } from "__mocks__";
 
 import useRecentActivity from "queries/useRecentActivity";
 
@@ -9,30 +10,10 @@ import { HOME_TAB_KEYS } from "constants/home";
 jest.mock("queries/useRecentActivity");
 
 describe("UpdatesFeed tests", () => {
-	const mockData = [
-		{
-			_id: "1",
-			content: "Update 1 content",
-			dateUpdated: "2022-09-13T23:03:02.878Z",
-			headline: "Update 1 headline",
-			documentUrl: "https://example.com/document1",
-			project: { name: "Project 1" },
-			pcp: { name: "PCP 1" },
-		},
-		{
-			_id: "2",
-			content: "Update 2 content",
-			dateUpdated: "2022-09-13T23:03:02.878Z",
-			headline: "Update 2 headline",
-			documentUrl: "https://example.com/document2",
-			project: { name: "Project 2" },
-			pcp: { name: "PCP 2" },
-		},
-	];
 	const mockOnSelectTab = jest.fn();
 
 	beforeEach(() => {
-		useRecentActivity.mockReturnValue({ isError: false, isSuccess: true, data: mockData });
+		useRecentActivity.mockReturnValue({ isError: false, isSuccess: true, data: mockUseRecentActivitiesData });
 	});
 
 	describe("UpdatesFeed header rendering", () => {
@@ -55,10 +36,10 @@ describe("UpdatesFeed tests", () => {
 			expect(screen.getByRole("list", { name: "Updates list" })).toBeInTheDocument();
 
 			const updateCards = screen.getAllByRole("listitem");
-			expect(updateCards.length).toBe(mockData.length);
+			expect(updateCards.length).toBe(mockUseRecentActivitiesData.length);
 
 			updateCards.forEach((card, i) => {
-				const { content, headline } = mockData[i];
+				const { content, headline } = mockUseRecentActivitiesData[i];
 
 				expect(within(card).getByText(headline)).toBeInTheDocument();
 				expect(within(card).getByText(content)).toBeInTheDocument();

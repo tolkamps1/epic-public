@@ -18,19 +18,20 @@ const DocumentAuthorsFilter = () => {
 	const { data = [{ searchResults: [] }] } = useLists({ enabled: true });
 
 	const items = useMemo(() => {
-		const mappedDocAuthors = DOCUMENT_AUTHORS.map((author) => {
+		const mappedDocAuthors = DOCUMENT_AUTHORS.filter((author) => {
 			const matchingIds = data[0].searchResults
 				.filter((item) => item.type === LIST_TYPE_FILTER_KEYS[filterKey])
 				.filter((item) => author.map.includes(item.name))
 				.map((item) => item._id)
 				.join(",");
 
-			return {
-				...author,
-				key: matchingIds,
-				filterKey,
-			};
-		});
+			return matchingIds;
+		}).map((author) => ({
+			...author,
+			key: author.map.join(","),
+			filterKey,
+		}));
+
 		return mappedDocAuthors;
 	}, [data]);
 
