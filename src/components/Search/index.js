@@ -16,7 +16,7 @@ const useStyles = makeStyles()((theme) => ({
 	},
 }));
 
-const Search = ({ title, placeholder }) => {
+const Search = ({ placeholder, title }) => {
 	const { classes } = useStyles();
 
 	return (

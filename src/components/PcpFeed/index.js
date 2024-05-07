@@ -79,6 +79,14 @@ const useStyles = makeStyles()((theme) => ({
 		fontSize: "1.25rem",
 		paddingLeft: "0",
 	},
+	cardList: {
+		display: "flex",
+		flexDirection: "column",
+		gap: "0.625rem",
+		listStyleType: "none",
+		marginTop: "0",
+		padding: "0",
+	},
 }));
 
 const PcpFeed = ({ onSelectTab }) => {
@@ -126,9 +134,14 @@ const PcpFeed = ({ onSelectTab }) => {
 				</div>
 				<div className={classes.content}>
 					<div className={classes.subheader}>Upcoming, open, and recently closed Public Comment Periods:</div>
-					{pcps.map((pcp) => (
-						<PcpCard key={pcp.key} {...pcp} />
-					))}
+					<ul aria-label="Public Comment Period list" className={classes.cardList}>
+						{pcps.map((pcp) => (
+							<li key={pcp.key}>
+								<PcpCard {...pcp} />
+							</li>
+						))}
+					</ul>
+
 					<div className={classes.footer}>
 						<Button
 							className={classes.pcpButton}

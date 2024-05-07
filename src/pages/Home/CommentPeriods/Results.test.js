@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
+import { mockUsePcpsData } from "__mocks__";
 
 import { useSearch } from "contexts/Search";
 
@@ -18,37 +19,10 @@ describe("CommentPeriodResults tests", () => {
 		searchTerm: "test",
 		selectedFilters: [],
 	};
-	const mockPcpData = {
-		searchResults: [
-			{
-				_id: "1",
-				dateCompleted: "2023-04-01T00:00:00.000Z",
-				dateStarted: "2023-03-01T00:00:00.000Z",
-				metURL: "https://example.com",
-				phaseName: "Phase 1",
-				project: { id: "7", name: "Project C" },
-			},
-			{
-				_id: "2",
-				dateCompleted: "2050-04-01T00:00:00.000Z",
-				dateStarted: "2050-03-01T00:00:00.000Z",
-				phaseName: "Phase 2",
-				project: { id: "8", name: "Project B" },
-			},
-			{
-				_id: "3",
-				dateCompleted: "2050-04-01T00:00:00.000Z",
-				dateStarted: "2023-03-01T00:00:00.000Z",
-				phaseName: "Phase 1",
-				project: { id: "9", name: "Project A" },
-			},
-		],
-		meta: [{ searchResultsTotal: 3 }],
-	};
 
 	beforeEach(() => {
 		useSearch.mockReturnValue(mockSearchState);
-		usePcps.mockReturnValue({ isError: false, isSuccess: true, data: [mockPcpData] });
+		usePcps.mockReturnValue({ isError: false, isSuccess: true, data: [mockUsePcpsData] });
 	});
 
 	test("should render with the correct data", () => {
@@ -57,11 +31,11 @@ describe("CommentPeriodResults tests", () => {
 		expect(screen.getByRole("table", { name: "results table" })).toBeInTheDocument();
 
 		const tableRows = screen.getAllByRole("row");
-		expect(tableRows.length).toBe(1 + mockPcpData.meta[0].searchResultsTotal); // header and pcps
+		expect(tableRows.length).toBe(1 + mockUsePcpsData.meta[0].searchResultsTotal); // header and pcps
 
-		for (let i = 0; i < mockPcpData.searchResults.length; i++) {
+		for (let i = 0; i < mockUsePcpsData.searchResults.length; i++) {
 			const dataRow = tableRows[i + 1];
-			const mockPcp = mockPcpData.searchResults[i];
+			const mockPcp = mockUsePcpsData.searchResults[i];
 
 			expect(within(dataRow).getByText(mockPcp.phaseName)).toBeInTheDocument();
 			expect(within(dataRow).getByText(mockPcp.project.name)).toBeInTheDocument();
@@ -78,13 +52,13 @@ describe("CommentPeriodResults tests", () => {
 		render(<CommentPeriodResults />);
 
 		const tableRows = screen.getAllByRole("row");
-		expect(tableRows.length).toBe(1 + mockPcpData.meta[0].searchResultsTotal); // header and pcps
+		expect(tableRows.length).toBe(1 + mockUsePcpsData.meta[0].searchResultsTotal); // header and pcps
 
 		const row = tableRows[1];
 
-		const projectLink = within(row).getByRole("link", { name: mockPcpData.searchResults[0].project.name });
+		const projectLink = within(row).getByRole("link", { name: mockUsePcpsData.searchResults[0].project.name });
 		expect(projectLink).toBeInTheDocument();
-		expect(projectLink).toHaveAttribute("href", `/p/${mockPcpData.searchResults[0].project._id}/project-details`);
+		expect(projectLink).toHaveAttribute("href", `/p/${mockUsePcpsData.searchResults[0].project._id}/project-details`);
 	});
 
 	test("should open the MET URL when a MET pcp row is clicked", () => {
@@ -93,10 +67,10 @@ describe("CommentPeriodResults tests", () => {
 		render(<CommentPeriodResults />);
 
 		const tableRows = screen.getAllByRole("row");
-		expect(tableRows.length).toBe(1 + mockPcpData.meta[0].searchResultsTotal); // header and pcps
+		expect(tableRows.length).toBe(1 + mockUsePcpsData.meta[0].searchResultsTotal); // header and pcps
 
 		fireEvent.click(tableRows[1]);
-		expect(window.open).toHaveBeenCalledWith(mockPcpData.searchResults[0].metURL);
+		expect(window.open).toHaveBeenCalledWith(mockUsePcpsData.searchResults[0].metURL);
 	});
 
 	test("should not render the component when there are no search results", () => {

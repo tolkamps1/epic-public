@@ -1,4 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
+import { mockUseListsData, mockUseUpdatesData } from "__mocks__";
 
 import { useSearch } from "contexts/Search";
 
@@ -8,8 +9,6 @@ import useUpdates from "queries/useUpdates";
 import UpdatesResults from "./Results";
 
 import { formatDateLongMonth } from "services/date";
-
-import { FILTER_KEYS, LIST_TYPE_FILTER_KEYS } from "constants/filters";
 
 jest.mock("contexts/Search");
 jest.mock("queries/useLists");
@@ -21,45 +20,11 @@ describe("UpdatesResults tests", () => {
 		searchTerm: "test",
 		selectedFilters: [],
 	};
-	const mockUpdateData = {
-		searchResults: [
-			{
-				_id: "1",
-				dateAdded: "2022-01-01T00:00:00.000Z",
-				project: {
-					_id: "2",
-					name: "Project 2",
-					currentPhaseName: "phaseId_1",
-				},
-				type: "News",
-				complianceAndEnforcement: true,
-			},
-			{
-				_id: "6",
-				dateAdded: "2022-04-21T00:00:00.000Z",
-				project: {
-					_id: "7",
-					name: "Project 7",
-					currentPhaseName: "phaseId_2",
-				},
-				type: "Public Comment Period",
-			},
-		],
-		meta: [{ searchResultsTotal: 2 }],
-	};
-	const mockListsData = [
-		{
-			searchResults: [
-				{ _id: "phaseId_1", name: "Phase 1", type: LIST_TYPE_FILTER_KEYS[FILTER_KEYS.PROJECT_PHASES] },
-				{ _id: "phaseId_2", name: "Phase 2", type: LIST_TYPE_FILTER_KEYS[FILTER_KEYS.PROJECT_PHASES] },
-			],
-		},
-	];
 
 	beforeEach(() => {
-		useLists.mockReturnValue({ data: mockListsData });
+		useLists.mockReturnValue({ data: mockUseListsData });
 		useSearch.mockReturnValue(mockSearchState);
-		useUpdates.mockReturnValue({ isError: false, isSuccess: true, data: [mockUpdateData] });
+		useUpdates.mockReturnValue({ isError: false, isSuccess: true, data: [mockUseUpdatesData] });
 	});
 
 	test("should render with the correct data", () => {
@@ -68,15 +33,15 @@ describe("UpdatesResults tests", () => {
 		expect(screen.getByRole("table", { name: "results table" })).toBeInTheDocument();
 
 		const tableRows = screen.getAllByRole("row");
-		expect(tableRows.length).toBe(1 + mockUpdateData.meta[0].searchResultsTotal); // header and pcps
+		expect(tableRows.length).toBe(1 + mockUseUpdatesData.meta[0].searchResultsTotal); // header and pcps
 
-		for (let i = 0; i < mockUpdateData.searchResults.length; i++) {
+		for (let i = 0; i < mockUseUpdatesData.searchResults.length; i++) {
 			const dataRow = tableRows[i + 1];
-			const mockUpdate = mockUpdateData.searchResults[i];
+			const mockUpdate = mockUseUpdatesData.searchResults[i];
 
 			expect(within(dataRow).getByText(mockUpdate.project.name)).toBeInTheDocument();
 
-			const projectPhase = mockListsData[0].searchResults.find(
+			const projectPhase = mockUseListsData[0].searchResults.find(
 				(phase) => phase._id === mockUpdate.project.currentPhaseName,
 			);
 			expect(within(dataRow).getByText(projectPhase.name)).toBeInTheDocument();
